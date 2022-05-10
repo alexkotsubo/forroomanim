@@ -452,6 +452,7 @@
 			}
 			> span:last-child {
 				> span {
+					transition-delay: .9s;
 					> span {
 						background-position: calc((100vw - (16vw + 50px)) * -1);
 					}
