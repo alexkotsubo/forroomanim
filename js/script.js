@@ -386,7 +386,7 @@ if (animItems.length > 0) {
 const headerCover = document.querySelectorAll('.header__cover');
  
 if (headerCover) {
-	const delay = 1800;
+	const delay = 1000;
 	const speed = delay * 2;
 	let withUpClass = null;
 	let prev = 0;
