@@ -1,0 +1,263 @@
+/* Nav */
+
+.nav {
+	$self: &;
+	&_menus {
+		opacity: 0;
+		transform: translate(0, -90%);
+		transition: opacity 1s, transform 1s;
+		&.active {
+			opacity: 1;
+			transform: translate(0, 0);
+		}
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: 52;
+		display: flex;
+		min-height: 80px;
+		#{$self}__btn, #{$self}__close-btn {
+			display: none;
+			cursor: pointer;
+			transition: .2s;
+			margin-left: auto;
+			.iconify {
+				font-size: 40px;
+				color: $red;
+			}
+		}
+		#{$self}__body {
+			width: 100%;
+			padding: 10px 50px;
+			background: $white_secondary;
+			display: flex;
+			align-items: center;
+			position: relative;
+			z-index: 52;
+		}
+		#{$self}__logo {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			max-width: 245px;
+			img {
+				max-width: 100%;
+			}
+		}
+		#{$self}__menus {
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+		}
+		#{$self}__menu {
+			margin-right: 30px;
+			&:last-child {
+				margin-right: 0;
+			}
+			display: flex;
+			> li {
+				margin-right: 40px;
+				&:last-child {
+					margin-right: 0;
+				}
+				> a {
+					font-weight: 500;
+					font-size: 17px;
+					line-height: 21px;
+					color: $black;
+					transition: .2s;
+					&:hover {
+						color: $red;
+						text-decoration: underline;
+					}
+				}
+				&.has-submenu {
+					position: relative;
+					&:hover, &.active {
+						> .nav__menu-submenu {
+							transition: 0s;
+							top: 21px;
+							left: 0;
+							> ul {
+								opacity: 1;
+								visibility: visible;
+							}
+						}
+					}
+				}
+			}
+			&-submenu {
+				position: absolute;
+				top: -9999px;
+				left: -9999px;
+				transition: top 0s .2s, left 0s .2s;
+				padding-top: 29px;
+				background: transparent;
+				> ul {
+					background: $white_secondary;
+					padding: 10px 0;
+					min-width: 280px;
+					opacity: 0;
+					visibility: hidden;
+					transition: .2s;
+					> li {
+						> a {
+							display: block;
+							color: $black;
+							font-size: 17px;
+							font-weight: 500;
+							line-height: 21px;
+							&:hover {
+								text-decoration: underline;
+							}
+							padding: 10px 20px;
+						}
+					}
+				}
+			}
+		}
+		#{$self}__burger {
+			display: none;
+			margin-left: auto;
+		}
+		#{$self}__lang {
+			margin-left: 40px;
+			&.active {
+				.nav__lang-select {
+					opacity: 1;
+					visibility: visible;
+				}
+			}
+			&-head {
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+			}
+			&-chosen {
+				font-weight: 500;
+				font-size: 17px;
+				line-height: 21px;
+				color: $black;
+			}
+			&-icon {
+				.iconify {
+					font-size: 40px;
+					transform: translate(0, 2px);
+				}
+			}
+			&-select {
+				display: flex;
+				flex-direction: column;
+				position: absolute;
+				bottom: 0;
+				right: 50px;
+				transform: translate(0, 100%);
+				background: $white_secondary;
+				padding: 10px 0;
+				min-width: 100px;
+				opacity: 0;
+				visibility: hidden;
+				transition: .2s;
+			}
+			&-variant {
+				cursor: pointer;
+				color: $black;
+				padding: 10px 20px;
+				font-size: 17px;
+				line-height: 21px;
+				&:hover {
+					text-decoration: underline;
+				}
+				input {
+					position: absolute;
+					top: -9999px;
+					left: -9999px;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 1919px) {
+	.nav_menus {
+		.nav__logo {
+			max-width: 225px;
+		}
+	}
+}
+
+@media (max-width: 1441px) {
+	.nav_menus {
+		min-height: 60px;
+		.nav__body {
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+	}
+	.nav_menus {
+		.nav__body {
+			padding-left: 100px;
+			padding-right: 100px;
+		}
+		.nav__menu {
+			li {
+				margin-right: 20px;
+			}
+		}
+		.nav__lang {
+			margin-left: 20px;
+			&-chosen {
+				font-size: 14px;
+				line-height: 17px;
+			}
+			&-icon .iconify {
+				font-size: 32px;
+			}
+		}
+		.nav__menu {
+			li {
+				a {
+					font-size: 14px;
+				}
+			}
+		}
+		.nav__logo {
+			max-width: 150px;
+		}
+	}
+}
+
+@media (max-width: 1279px) {
+	.nav_menus {
+		.nav__menu-submenu {
+			padding-top: 26px;
+		}
+	}
+}
+
+@media (max-width: 1023px) {
+	.nav_menus {
+		.nav__menus {
+			display: none;
+		}
+		.nav__lang {
+			display: none;
+		}
+		.nav__burger {
+			display: block;
+		}
+		.nav__btn {
+			display: block;
+		}
+		.nav__logo {
+			margin-left: auto;
+		}
+		.nav__body {
+			padding-left: 20px;
+			padding-right: 20px;
+			justify-content: center;
+		}
+	}
+}
