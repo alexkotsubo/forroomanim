@@ -127,7 +127,7 @@
 				display: block;
 				height: 100%;
 				background: transparent;
-				transition: box-shadow .3s .5s;
+				transition: box-shadow .3s .5s, z-index .3s .5s;
 				&:hover {
 					z-index: 1;
 					box-shadow: 0 0 80px rgba(0, 0, 0, .5), 0 0 80px rgba(0, 0, 0, .5);
@@ -171,7 +171,7 @@
 					display: block;
 					background: transparent;
 					position: relative;
-					transition: box-shadow .3s .5s;
+					transition: box-shadow .3s .5s, z-index .3s .5s;
 					&:hover {
 						z-index: 1;
 						box-shadow: 0 0 80px rgba(0, 0, 0, .5), 0 0 80px rgba(0, 0, 0, .5);
