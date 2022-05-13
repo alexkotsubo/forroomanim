@@ -125,7 +125,7 @@
 				display: block;
 				height: 100%;
 				background: transparent;
-				transition: box-shadow .3s, z-index .3s;
+				transition: box-shadow .8s, z-index .8s;
 				z-index: 1;
 				&:hover {
 					z-index: 2;
@@ -150,7 +150,7 @@
 			}
 			> span:first-child {
 				> span {
-					transition-duration: .2s;
+					transition-delay: .2s;
 					> span {
 						background-position: left;
 					}
@@ -158,7 +158,7 @@
 			}
 			> span:last-child {
 				> span {
-					transition-duration: 1.4s;
+					transition-delay: 1.2s;
 					> span {
 						background-position: calc((100vw - (16vw + 50px)) * -1);
 					}
@@ -174,7 +174,7 @@
 					display: block;
 					background: transparent;
 					position: relative;
-					transition: box-shadow .3s, z-index .3s;
+					transition: box-shadow .8s, z-index .8s;
 					z-index: 1;
 					&:hover {
 						z-index: 2;
@@ -196,7 +196,7 @@
 				}
 				> span:nth-child(1) {
 					> span {
-						transition-duration: .6s;
+						transition-delay: .4s;
 						> span {
 							background-position: calc((16vw + 50px) * -1);
 						}
@@ -204,7 +204,7 @@
 				}
 				> span:nth-child(2) {
 					> span {
-						transition-duration: .8s;
+						transition-delay: .6s;
 						> span {
 							background-position: calc(((16vw + 50px) + ((17vw - 100px / 4))) * -1);
 						}
@@ -212,7 +212,7 @@
 				}
 				> span:nth-child(3) {
 					> span {
-						transition-duration: 1.0s;
+						transition-delay: .8s;
 						> span {
 							background-position: calc(((16vw + 50px) + ((17vw - 100px / 4) * 2)) * -1);
 						}
@@ -220,7 +220,7 @@
 				}
 				> span:nth-child(4) {
 					> span {
-						transition-duration: 1.2s;
+						transition-delay: 1.0s;
 						> span {
 							background-position: calc(((16vw + 50px) + ((17vw - 100px / 4) * 3)) * -1);
 						}
@@ -473,7 +473,7 @@
 			}
 			> span:last-child {
 				> span {
-					transition-duration: 1.0s;
+					transition-delay: .8s;
 					> span {
 						background-position: calc((100vw - (16vw + 50px)) * -1);
 					}
