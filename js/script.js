@@ -384,30 +384,55 @@ if (animItems.length > 0) {
 /* Slide With Hiding Content */
 
 const headerCover = document.querySelectorAll('.header__cover');
+const headerSlider = document.querySelector('.header__slider');
+const headerSlide = document.querySelectorAll('.header__slide');
  
 if (headerCover) {
-	const delay = 3000;
+	let delay = 2000;
 	const speed = delay * 2;
 	let withUpClass = null;
 	let prev = 0;
-	headerCover[prev].classList.remove('hide');
+	window.addEventListener('resize', e => {
+		if (document.documentElement.clientWidth >= 1023) {
+			delay = 2000;
+		} else {
+			delay = 1200;
+		}
+	});
+	const changeSlide = () => {
+		headerSlider.classList.add('changing');
+		if (withUpClass !== null) {
+			headerCover[withUpClass].classList.remove('up');
+		}
+		let prevLoc = prev;
+		setTimeout(() => {
+			headerCover[prevLoc].classList.add('hide');
+			headerSlider.classList.remove('changing');
+		}, delay);
+		prev += 1;
+		if (prev > headerCover.length - 1) {
+			prev = 2;
+			headerCover[prev].classList.add('up');
+			withUpClass = prev;
+		}
+		headerCover[prev].classList.remove('hide');
+	};
+	headerSlider.classList.add('changing');
+	setTimeout(() => {
+		headerSlider.classList.remove('changing');
+	}, delay);
+	changeSlide();
+	setTimeout(() => {
+		changeSlide();
+	}, delay * 2);
 	if (headerCover.length > 1) {
-		setInterval(() => {
-			if (withUpClass !== null) {
-				headerCover[withUpClass].classList.remove('up');
-			}
-			let prevLoc = prev;
-			setTimeout(() => {
-				headerCover[prevLoc].classList.add('hide');
-			}, delay);
-			prev += 1;
-			if (prev > headerCover.length - 1) {
-				prev = 0;
-				headerCover[prev].classList.add('up');
-				withUpClass = prev;
-			}
-			headerCover[prev].classList.remove('hide');
-		}, speed + delay);
+		// setInterval(() => {
+		// 	headerSlider.classList.add('changing');
+		// }, speed + delay + 4000);
+		// setInterval(() => {
+		// 	headerSlider.classList.remove('changing');
+		// }, speed * 2 + 4000);
+		setInterval(changeSlide, speed + delay + 4000);
 	}
 }
 
