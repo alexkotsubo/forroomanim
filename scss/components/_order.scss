@@ -6,6 +6,12 @@
 		position: relative;
 		z-index: 3;
 	}
+	&_repair {
+		.order__content-title h3 {
+			font-size: 36px;
+			line-height: 44px;
+		}
+	}
 	&__content {
 		overflow: hidden;
 		margin: 75px 0;
@@ -28,9 +34,10 @@
 				text-transform: uppercase;
 				position: relative;
 				z-index: 2;
-				display: flex;
-				align-items: flex-end;
 				margin-top: 57px;
+				span {
+					color: $red;
+				}
 			}
 			h2 {
 				font-weight: 900;
@@ -205,6 +212,13 @@
 		}
 	}
 
+	.order_repair {
+		.order__content-title h3 {
+			font-size: 22px;
+			line-height: 27px;
+		}
+	}
+
 	.order__content-text {
 		font-size: 17px;
 		line-height: 21px;
@@ -338,6 +352,35 @@
 			margin-right: auto;
 		}
 	}
+
+	section.order > div.order__inner {
+		min-height: unset;
+	}
+	.order_repair {
+		.order__content-wrap {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.order__content-title h2 {
+			left: 50%;
+			right: unset;
+			transform: translate(-50%, 0);
+		}
+		.order__content-title h3 {
+			text-align: center;
+		}
+		.order__content-btns .btn {
+			width: auto;
+		}
+		.order__content {
+			padding-top: 50px;
+			padding-bottom: 50px;
+		}
+		.order__content-btns {
+			margin-top: 28px;
+			justify-content: center;
+		}
+	}
 }
 
 @media (max-width: 767px) {
@@ -365,6 +408,13 @@
 		font-size: 17px;
 		line-height: 21px;
 		margin-top: 33px;
+	}
+
+	.order_repair {
+		.order__content-title h3 {
+			font-size: 17px;
+			line-height: 21px;
+		}
 	}
 
 	.order__content-text {
@@ -408,6 +458,31 @@
 			}
 		}
 	}
+	.order_repair {
+		.order__content-wrap {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.order__content-title h2 {
+			left: 50%;
+			right: unset;
+			transform: translate(-50%, 0);
+		}
+		.order__content-title h3 {
+			text-align: center;
+		}
+		.order__content-btns .btn {
+			width: auto;
+		}
+		.order__content {
+			padding-top: 50px;
+			padding-bottom: 50px;
+		}
+		.order__content-btns {
+			margin-top: 28px;
+			justify-content: center;
+		}
+	}
 }
 
 @media (max-width: 479px) {
@@ -435,5 +510,30 @@
 	.order_packages {
 		padding-top: 40px;
 		padding-bottom: 40px;
+	}
+	.order_repair {
+		.order__content-wrap {
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.order__content-title h2 {
+			left: 50%;
+			right: unset;
+			transform: translate(-50%, 0);
+		}
+		.order__content-title h3 {
+			text-align: center;
+		}
+		.order__content-btns .btn {
+			width: auto;
+		}
+		.order__content {
+			padding-top: 50px;
+			padding-bottom: 50px;
+		}
+		.order__content-btns {
+			margin-top: 28px;
+			justify-content: center;
+		}
 	}
 }

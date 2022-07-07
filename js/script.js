@@ -114,7 +114,7 @@ window.addEventListener('resize', centerPopup);
 
 const closePopup = elem => {
 	elem.classList.remove('open');
-	body.classList.remove('lock');
+	document.querySelector('body').classList.remove('lock');
 
 	if (elem.id === 'test-popup') {
 		onCloseTestPopup();
@@ -129,7 +129,7 @@ const openPopup = elem => {
 		const popupActive = document.querySelector('.popup.open');
 
 		if (popupActive) closePopup(popupActive, false);
-		else body.classList.add('lock');
+		else document.querySelector('body').classList.add('lock');
 
 		elem.classList.add('open');
 		elem.addEventListener('click', e => {
@@ -367,7 +367,6 @@ if (animItems.length > 0) {
 				if (animItems[i].classList.contains('splitting-2')) {
 					let delay = 0.1;
 					const words = animItems[i].querySelectorAll('.word');
-					console.log(words)
 					for (let y = 0; y < words.length; y++) {
 						words[y].style.animationDelay = delay + 's';
 						delay += 0.1;
@@ -386,55 +385,140 @@ if (animItems.length > 0) {
 const headerCover = document.querySelectorAll('.header__cover');
 const headerSlider = document.querySelector('.header__slider');
 const headerSlide = document.querySelectorAll('.header__slide');
- 
-if (headerCover) {
-	let delay = 2000;
-	const speed = delay * 2;
-	let withUpClass = null;
-	let prev = 0;
-	window.addEventListener('resize', e => {
-		if (document.documentElement.clientWidth >= 1023) {
-			delay = 2000;
-		} else {
-			delay = 1200;
-		}
-	});
-	const changeSlide = () => {
+
+window.addEventListener('DOMContentLoaded', e => {
+	if (headerSlider) {
+		let interval = null;
+		let delay = 2000;
+		const speed = delay * 2;
+		let withUpClass = null;
+		let prev = 0;
+		let slidesOffset = [0, 0];
+		const spanImgBg = () => {
+			for (let i = 2; i < headerSlide.length; i++) {
+				slidesOffset[i] = 0;
+				const headerColumns = headerSlide[i].querySelectorAll('.header__cover-inner > span > span > span, .header__cover > span > span > span');
+				const img = new Image;
+				img.src = headerColumns[0].style.backgroundImage.replace(/url\(|\)$/ig, "").replace("\"", "").replace("\"", "");
+				let bgImgWidth = +img.width;
+				let bgImgHeight = +img.height;
+				if (bgImgHeight > bgImgWidth) {
+					const proportion = +(bgImgWidth / bgImgHeight * 100).toFixed() + 100;
+					for (let y = 0; y < headerColumns.length; y++) {
+						let value = (document.documentElement.clientWidth / 100 * proportion).toFixed();
+						if (value < document.documentElement.clientHeight) {
+							// const style = headerColumns[y].getAttribute('style');
+							// value = (document.documentElement.clientWidth / 100 * proportion).toFixed();
+							// headerColumns[y].setAttribute('style', style + "background-size: " + value + 'px calc(var(--vh, 1vh)*100);');
+							// slidesOffset[i] = +((value - document.documentElement.clientWidth) / 2).toFixed() < 0 ? 0 : +((value - document.documentElement.clientWidth) / 2).toFixed();
+							headerColumns[y].style.backgroundSize = value + 'px calc(var(--vh, 1vh)*100)';
+							slidesOffset[i] = +((value - document.documentElement.clientWidth) / 2).toFixed() < 0 ? 0 : +((value - document.documentElement.clientWidth) / 2).toFixed();
+							continue;
+						}
+						headerColumns[y].style.backgroundSize = '100vw ' + value + 'px';
+						slidesOffset[i] = 0;
+					}
+					continue;
+				}
+				if (bgImgWidth > bgImgHeight) {
+					const proportion = +((100 - (bgImgHeight / bgImgWidth * 100)) * 2).toFixed() + 100;
+					const proportionHeight = +(bgImgHeight / bgImgWidth * 100).toFixed();
+					for (let y = 0; y < headerColumns.length; y++) {
+						//let value = (document.documentElement.clientWidth / 100 * proportion).toFixed();
+						// if (value > document.documentElement.clientHeight) {
+						// 	value = (document.documentElement.clientHeight / 100 * proportion).toFixed();
+						// 	headerColumns[y].style.backgroundSize = '100vw ' + value + 'px';
+						// 	slidesOffset[i] = 0;
+						// 	continue;
+						// 	// value = (document.documentElement.clientHeight / 100 * proportion).toFixed();
+						// 	// headerColumns[y].style.backgroundSize = value + 'px calc(var(--vh, 1vh)*100)';
+						// 	// slidesOffset[i] = +((value - document.documentElement.clientWidth) / 2).toFixed() < 0 ? 0 : +((value - document.documentElement.clientWidth) / 2).toFixed();
+						// 	// continue;
+						// }
+						// if (bgImgWidth < document.documentElement.clientWidth) {
+						// 	value = (bgImgWidth / 100 * proportion).toFixed();
+						// 	headerColumns[y].style.backgroundSize = '100vw ' + value + 'px';
+						// 	slidesOffset[i] = 0;
+						// 	continue;
+						// }
+						//headerColumns[y].style.backgroundSize = value + 'px calc(var(--vh, 1vh)*100)';
+						//slidesOffset[i] = +((value - document.documentElement.clientWidth) / 2).toFixed() < 0 ? 0 : +((value - document.documentElement.clientWidth) / 2).toFixed();
+						let value = (document.documentElement.clientHeight / 100 * proportion).toFixed();
+						if (value < document.documentElement.clientWidth) {
+							value = (document.documentElement.clientWidth / 100 * proportionHeight).toFixed();
+							headerColumns[y].style.backgroundSize = '100vw ' + value + 'px';
+							slidesOffset[i] = 0;
+							continue;
+						}
+						headerColumns[y].style.backgroundSize = value + 'px calc(var(--vh, 1vh)*100)';
+						slidesOffset[i] = +((value - document.documentElement.clientHeight) / 2).toFixed() < 0 ? 0 : +((value - document.documentElement.clientWidth) / 2).toFixed();
+					}
+					continue;
+				}
+			}
+		};
+		spanImgBg();
+		window.addEventListener('resize', e => {
+			spanImgBg();
+			if (document.documentElement.clientWidth >= 1023) {
+				delay = 2000;
+			} else {
+				delay = 1200;
+			}
+		});
+		let startPrev = false;
+		const changeSlide = () => {
+			headerSlider.classList.add('changing');
+			if (withUpClass !== null) {
+				headerCover[withUpClass].classList.remove('up');
+			}
+			prev += 1;
+			if (prev === headerCover.length) {
+				prev = 2;
+				startPrev = true;
+				if (headerCover.length === 3) {
+					clearInterval(interval);
+					return;
+				}
+			}
+			const value = slidesOffset[prev] === undefined ? 0 : slidesOffset[prev];
+			if (prev % 2 === 0) {
+				document.documentElement.style.setProperty('--firstSlide', `-${value}px`);
+			} else {
+				document.documentElement.style.setProperty('--secondSlide', `-${value}px`);
+			}
+			let prevLoc = prev - 1;
+			if (startPrev) {
+				prevLoc = headerCover.length - 1;
+				startPrev = false;
+				headerCover[prev].classList.add('up');
+				withUpClass = prev;
+			}
+			setTimeout(() => {
+				headerCover[prevLoc].classList.add('hide');
+				headerSlider.classList.remove('changing');
+			}, delay);
+			if (prev > headerCover.length - 1) {
+				headerCover[prev].classList.add('up');
+				withUpClass = prev;
+				const value = slidesOffset[prev - 1] === undefined ? 0 : slidesOffset[prev - 1];
+				document.documentElement.style.setProperty('--lastSlide', `-${value}px`);
+			}
+			headerCover[prev].classList.remove('hide');
+		};
 		headerSlider.classList.add('changing');
-		if (withUpClass !== null) {
-			headerCover[withUpClass].classList.remove('up');
-		}
-		let prevLoc = prev;
 		setTimeout(() => {
-			headerCover[prevLoc].classList.add('hide');
 			headerSlider.classList.remove('changing');
 		}, delay);
-		prev += 1;
-		if (prev > headerCover.length - 1) {
-			prev = 2;
-			headerCover[prev].classList.add('up');
-			withUpClass = prev;
-		}
-		headerCover[prev].classList.remove('hide');
-	};
-	headerSlider.classList.add('changing');
-	setTimeout(() => {
-		headerSlider.classList.remove('changing');
-	}, delay);
-	changeSlide();
-	setTimeout(() => {
 		changeSlide();
-	}, delay * 2);
-	if (headerCover.length > 1) {
-		// setInterval(() => {
-		// 	headerSlider.classList.add('changing');
-		// }, speed + delay + 4000);
-		// setInterval(() => {
-		// 	headerSlider.classList.remove('changing');
-		// }, speed * 2 + 4000);
-		setInterval(changeSlide, speed + delay + 4000);
+		setTimeout(() => {
+			changeSlide();
+		}, delay * 2);
+		if (headerCover.length > 1) {
+			interval = setInterval(changeSlide, speed + delay + 4000);
+		}
 	}
-}
+});
 
 /* Nav */
 
@@ -593,8 +677,8 @@ function burgBodyLock() {
 		}
 	}
 
-	body.style.paddingRight = paddingValue;
-	body.classList.add('lock');
+	document.querySelector('body').style.paddingRight = paddingValue;
+	document.querySelector('body').classList.add('lock');
 }
 
 function burgBodyUnLock() {
@@ -606,8 +690,8 @@ function burgBodyUnLock() {
 			}
 		}
 
-		body.style.paddingRight = '0px';
-		body.classList.remove('lock');
+		document.querySelector('body').style.paddingRight = '0px';
+		document.querySelector('body').classList.remove('lock');
 	}
 }
 

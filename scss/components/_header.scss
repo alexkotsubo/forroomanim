@@ -104,6 +104,150 @@
 				}
 			}
 			.header__slide {
+				&:nth-child(2n - 1) {
+					.header__cover {
+						> span:first-child {
+							> span {
+								> span {
+									background-position: calc(var(--firstSlide, 0px));
+								}
+							}
+						}
+						> span:last-child {
+							> span {
+								> span {
+									background-position: calc((100vw - (16vw + 50px)) * -1 + var(--firstSlide, 0px));
+								}
+							}
+						}
+						.header__cover-inner {
+							> span:nth-child(1) {
+								> span {
+									> span {
+										background-position: calc((16vw + 50px) * -1 + var(--firstSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(2) {
+								> span {
+									> span {
+										background-position: calc(((16vw + 50px) + ((17vw - 100px / 4))) * -1 + var(--firstSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(3) {
+								> span {
+									> span {
+										background-position: calc(((16vw + 50px) + ((17vw - 100px / 4) * 2)) * -1 + var(--firstSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(4) {
+								> span {
+									> span {
+										background-position: calc(((16vw + 50px) + ((17vw - 100px / 4) * 3)) * -1 + var(--firstSlide, 0px));
+									}
+								}
+							}
+						}
+					}
+				}
+				&:nth-child(2n) {
+					.header__cover {
+						> span:first-child {
+							> span {
+								> span {
+									background-position: calc(var(--secondSlide, 0px));
+								}
+							}
+						}
+						> span:last-child {
+							> span {
+								> span {
+									background-position: calc((100vw - (16vw + 50px)) * -1 + var(--secondSlide, 0px));
+								}
+							}
+						}
+						.header__cover-inner {
+							> span:nth-child(1) {
+								> span {
+									> span {
+										background-position: calc((16vw + 50px) * -1 + var(--secondSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(2) {
+								> span {
+									> span {
+										background-position: calc(((16vw + 50px) + ((17vw - 100px / 4))) * -1 + var(--secondSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(3) {
+								> span {
+									> span {
+										background-position: calc(((16vw + 50px) + ((17vw - 100px / 4) * 2)) * -1 + var(--secondSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(4) {
+								> span {
+									> span {
+										background-position: calc(((16vw + 50px) + ((17vw - 100px / 4) * 3)) * -1 + var(--secondSlide, 0px));
+									}
+								}
+							}
+						}
+					}
+				}
+				&:last-child {
+					.header__cover {
+						> span:first-child {
+							> span {
+								> span {
+									background-position: calc(var(--secondSlide, 0px) + var(--lastSlide, 0px));
+								}
+							}
+						}
+						> span:last-child {
+							> span {
+								> span {
+									background-position: calc((100vw - (16vw + 50px)) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+								}
+							}
+						}
+						.header__cover-inner {
+							> span:nth-child(1) {
+								> span {
+									> span {
+										background-position: calc((16vw + 50px) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(2) {
+								> span {
+									> span {
+										background-position: calc(((16vw + 50px) + ((17vw - 100px / 4))) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(3) {
+								> span {
+									> span {
+										background-position: calc(((16vw + 50px) + ((17vw - 100px / 4) * 2)) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(4) {
+								> span {
+									> span {
+										background-position: calc(((16vw + 50px) + ((17vw - 100px / 4) * 3)) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+									}
+								}
+							}
+						}
+					}
+				}
 				position: absolute;
 				top: 0;
 				left: 0;
@@ -170,30 +314,18 @@
 						display: block;
 						min-width: calc(16vw + 50px);
 						height: 100%;
-						background-size: none;
 					}
 				}
 			}
 			&.up {
 				z-index: 6;
 			}
-			> span:first-child {
-				> span {
-					//transition-delay: .4s;
-					> span {
-						background-position: left;
-					}
-				}
-			}
 			> span:last-child {
 				> span {
 					transition-delay: 1.0s;
-					> span {
-						background-position: calc((100vw - (16vw + 50px)) * -1);
-					}
 				}
 			}
-			&-inner {
+			.header__cover-inner {
 				width: calc(100% - (16vw + 50px) * 2);
 				display: flex;
 				flex-wrap: nowrap;
@@ -219,61 +351,31 @@
 							display: block;
 							min-width: calc(17vw - 100px / 4);
 							height: 100%;
-							background-size: none;
 						}
 					}
 				}
 				> span:nth-child(1) {
 					> span {
 						transition-delay: .2s;
-						> span {
-							background-position: calc((16vw + 50px) * -1);
-						}
 					}
 				}
 				> span:nth-child(2) {
 					> span {
 						transition-delay: .4s;
-						> span {
-							background-position: calc(((16vw + 50px) + ((17vw - 100px / 4))) * -1);
-						}
 					}
 				}
 				> span:nth-child(3) {
 					> span {
 						transition-delay: .6s;
-						> span {
-							background-position: calc(((16vw + 50px) + ((17vw - 100px / 4) * 2)) * -1);
-						}
 					}
 				}
 				> span:nth-child(4) {
 					> span {
 						transition-delay: .8s;
-						> span {
-							background-position: calc(((16vw + 50px) + ((17vw - 100px / 4) * 3)) * -1);
-						}
 					}
 				}
 			}
-			// &.right {
-			// 	> span {
-			// 		display: flex;
-			// 		justify-content: flex-end;
-			// 	}
-			// 	.header__cover-inner {
-			// 		> span {
-			// 			display: flex;
-			// 			justify-content: flex-end;
-			// 		}
-			// 	}
-			// }
-			//opacity: 0;
-			// transition: z-index 0s 0s, opacity 0s 0s;
-			// transition: z-index 0s 1.4s, opacity 0s 1.4s;
 			&.hide {
-				//opacity: 1;
-				//z-index: 2;
 				#{$self}__cover-inner span {
 					> span {
 						width: 0%;
@@ -397,6 +499,154 @@
 		.header__lines {
 			padding: 0 calc(50px + 8vw);
 		}
+		.header__anim-background {
+			.header__slide {
+				&:nth-child(2n - 1) {
+					.header__cover {
+						> span:first-child {
+							> span {
+								> span {
+									background-position: calc(var(--firstSlide, 0px));
+								}
+							}
+						}
+						> span:last-child {
+							> span {
+								> span {
+									background-position: calc((100vw - (8vw + 50px)) * -1 + var(--firstSlide, 0px));
+								}
+							}
+						}
+						.header__cover-inner {
+							> span:nth-child(1) {
+								> span {
+									> span {
+										background-position: calc((8vw + 50px) * -1 + var(--firstSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(2) {
+								> span {
+									> span {
+										background-position: calc(((8vw + 50px) + ((21vw - 100px / 4))) * -1 + var(--firstSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(3) {
+								> span {
+									> span {
+										background-position: calc(((8vw + 50px) + ((21vw - 100px / 4) * 2)) * -1 + var(--firstSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(4) {
+								> span {
+									> span {
+										background-position: calc(((8vw + 50px) + ((21vw - 100px / 4) * 3)) * -1 + var(--firstSlide, 0px));
+									}
+								}
+							}
+						}
+					}
+				}
+				&:nth-child(2n) {
+					.header__cover {
+						> span:first-child {
+							> span {
+								> span {
+									background-position: calc(var(--secondSlide, 0px));
+								}
+							}
+						}
+						> span:last-child {
+							> span {
+								> span {
+									background-position: calc((100vw - (8vw + 50px)) * -1 + var(--secondSlide, 0px));
+								}
+							}
+						}
+						.header__cover-inner {
+							> span:nth-child(1) {
+								> span {
+									> span {
+										background-position: calc((8vw + 50px) * -1 + var(--secondSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(2) {
+								> span {
+									> span {
+										background-position: calc(((8vw + 50px) + ((21vw - 100px / 4))) * -1 + var(--secondSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(3) {
+								> span {
+									> span {
+										background-position: calc(((8vw + 50px) + ((21vw - 100px / 4) * 2)) * -1 + var(--secondSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(4) {
+								> span {
+									> span {
+										background-position: calc(((8vw + 50px) + ((21vw - 100px / 4) * 3)) * -1 + var(--secondSlide, 0px));
+									}
+								}
+							}
+						}
+					}
+				}
+				&:last-child {
+					.header__cover {
+						> span:first-child {
+							> span {
+								> span {
+									background-position: calc(var(--secondSlide, 0px) + var(--lastSlide, 0px));
+								}
+							}
+						}
+						> span:last-child {
+							> span {
+								> span {
+									background-position: calc((100vw - (8vw + 50px)) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+								}
+							}
+						}
+						.header__cover-inner {
+							> span:nth-child(1) {
+								> span {
+									> span {
+										background-position: calc((8vw + 50px) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(2) {
+								> span {
+									> span {
+										background-position: calc(((8vw + 50px) + ((21vw - 100px / 4))) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(3) {
+								> span {
+									> span {
+										background-position: calc(((8vw + 50px) + ((21vw - 100px / 4) * 2)) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(4) {
+								> span {
+									> span {
+										background-position: calc(((8vw + 50px) + ((21vw - 100px / 4) * 3)) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 		.header__cover {
 			> span {
 				width: calc(8vw + 50px);
@@ -406,43 +656,8 @@
 					}
 				}
 			}
-			> span:last-child {
-				> span {
-					> span {
-						background-position: calc((100vw - (8vw + 50px)) * -1);
-					}
-				}
-			}
-			&-inner {
-				width: calc(100% - (8vw + 50px) * 2);
-				> span:nth-child(1) {
-					> span {
-						> span {
-							background-position: calc((8vw + 50px) * -1);
-						}
-					}
-				}
-				> span:nth-child(2) {
-					> span {
-						> span {
-							background-position: calc(((8vw + 50px) + ((21vw - 100px / 4))) * -1);
-						}
-					}
-				}
-				> span:nth-child(3) {
-					> span {
-						> span {
-							background-position: calc(((8vw + 50px) + ((21vw - 100px / 4) * 2)) * -1);
-						}
-					}
-				}
-				> span:nth-child(4) {
-					> span {
-						> span {
-							background-position: calc(((8vw + 50px) + ((21vw - 100px / 4) * 3)) * -1);
-						}
-					}
-				}
+			.header__cover-inner {
+				width: calc(100vw - (8vw + 50px) * 2);
 				> span {
 					> span {
 						> span {
@@ -491,6 +706,112 @@
 				}
 			}
 		}
+		.header__anim-background {
+			.header__slide {
+				&:nth-child(2n - 1) {
+					.header__cover {
+						> span:first-child {
+							> span {
+								> span {
+									background-position: calc(var(--firstSlide, 0px));
+								}
+							}
+						}
+						> span:last-child {
+							> span {
+								> span {
+									background-position: calc((100vw - (16vw + 50px)) * -1 + var(--firstSlide, 0px));
+								}
+							}
+						}
+						.header__cover-inner {
+							> span:nth-child(1) {
+								> span {
+									> span {
+										background-position: calc((16vw + 50px) * -1 + var(--firstSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(2) {
+								> span {
+									> span {
+										background-position: calc(((16vw + 50px) + ((34vw - 100px / 2))) * -1 + var(--firstSlide, 0px));
+									}
+								}
+							}
+						}
+					}
+				}
+				&:nth-child(2n) {
+					.header__cover {
+						> span:first-child {
+							> span {
+								> span {
+									background-position: calc(var(--secondSlide, 0px));
+								}
+							}
+						}
+						> span:last-child {
+							> span {
+								> span {
+									background-position: calc((100vw - (16vw + 50px)) * -1 + var(--secondSlide, 0px));
+								}
+							}
+						}
+						.header__cover-inner {
+							> span:nth-child(1) {
+								> span {
+									> span {
+										background-position: calc((16vw + 50px) * -1 + var(--secondSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(2) {
+								> span {
+									> span {
+										background-position: calc(((16vw + 50px) + ((34vw - 100px / 2))) * -1 + var(--secondSlide, 0px));
+									}
+								}
+							}
+						}
+					}
+				}
+				&:last-child {
+					.header__cover {
+						> span:first-child {
+							> span {
+								> span {
+									background-position: calc(var(--secondSlide, 0px) + var(--lastSlide, 0px));
+								}
+							}
+						}
+						> span:last-child {
+							> span {
+								> span {
+									background-position: calc((100vw - (16vw + 50px)) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+								}
+							}
+						}
+						.header__cover-inner {
+							> span:nth-child(1) {
+								> span {
+									> span {
+										background-position: calc((16vw + 50px) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(2) {
+								> span {
+									> span {
+										background-position: calc(((16vw + 50px) + ((34vw - 100px / 2))) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 		.header__cover {
 			> span {
 				width: calc(16vw + 50px);
@@ -503,12 +824,9 @@
 			> span:last-child {
 				> span {
 					transition-delay: .8s;
-					> span {
-						background-position: calc((100vw - (16vw + 50px)) * -1);
-					}
 				}
 			}
-			&-inner {
+			.header__cover-inner {
 				width: calc(100% - (16vw + 50px) * 2);
 				> span:nth-child(3), > span:nth-child(4) {
 					display: none;
@@ -516,20 +834,6 @@
 				> span {
 					flex: 0 0 50%;
 					width: 50%;
-				}
-				> span:nth-child(1) {
-					> span {
-						> span {
-							background-position: calc((16vw + 50px) * -1);
-						}
-					}
-				}
-				> span:nth-child(2) {
-					> span {
-						> span {
-							background-position: calc(((16vw + 50px) + ((34vw - 100px / 2))) * -1);
-						}
-					}
 				}
 				> span {
 					> span {
@@ -592,6 +896,112 @@
 				}
 			}
 		}
+		.header__anim-background {
+			.header__slide {
+				&:nth-child(2n - 1) {
+					.header__cover {
+						> span:first-child {
+							> span {
+								> span {
+									background-position: calc(var(--firstSlide, 0px));
+								}
+							}
+						}
+						> span:last-child {
+							> span {
+								> span {
+									background-position: calc((100vw - 20px) * -1 + var(--firstSlide, 0px));
+								}
+							}
+						}
+						.header__cover-inner {
+							> span:nth-child(1) {
+								> span {
+									> span {
+										background-position: calc(20px * -1 + var(--firstSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(2) {
+								> span {
+									> span {
+										background-position: calc((20px + ((50vw - 20px))) * -1 + var(--firstSlide, 0px));
+									}
+								}
+							}
+						}
+					}
+				}
+				&:nth-child(2n) {
+					.header__cover {
+						> span:first-child {
+							> span {
+								> span {
+									background-position: calc(var(--secondSlide, 0px));
+								}
+							}
+						}
+						> span:last-child {
+							> span {
+								> span {
+									background-position: calc((100vw - 20px) * -1 + var(--secondSlide, 0px));
+								}
+							}
+						}
+						.header__cover-inner {
+							> span:nth-child(1) {
+								> span {
+									> span {
+										background-position: calc(20px * -1 + var(--secondSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(2) {
+								> span {
+									> span {
+										background-position: calc((20px + ((50vw - 20px))) * -1 + var(--secondSlide, 0px));
+									}
+								}
+							}
+						}
+					}
+				}
+				&:last-child {
+					.header__cover {
+						> span:first-child {
+							> span {
+								> span {
+									background-position: calc(var(--secondSlide, 0px) + var(--lastSlide, 0px));
+								}
+							}
+						}
+						> span:last-child {
+							> span {
+								> span {
+									background-position: calc((100vw - 20px) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+								}
+							}
+						}
+						.header__cover-inner {
+							> span:nth-child(1) {
+								> span {
+									> span {
+										background-position: calc(20px * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+									}
+								}
+							}
+							> span:nth-child(2) {
+								> span {
+									> span {
+										background-position: calc((20px + ((50vw - 20px))) * -1 + var(--secondSlide, 0px) + var(--lastSlide, 0px));
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 		.header__cover {
 			> span {
 				width: 20px;
@@ -601,29 +1011,8 @@
 					}
 				}
 			}
-			> span:last-child {
-				> span {
-					> span {
-						background-position: calc((100vw - 20px) * -1);
-					}
-				}
-			}
-			&-inner {
+			.header__cover-inner {
 				width: calc(100% - 20px * 2);
-				> span:nth-child(1) {
-					> span {
-						> span {
-							background-position: calc(20px * -1);
-						}
-					}
-				}
-				> span:nth-child(2) {
-					> span {
-						> span {
-							background-position: calc((20px + ((50vw - 20px))) * -1);
-						}
-					}
-				}
 				> span {
 					> span {
 						> span {
